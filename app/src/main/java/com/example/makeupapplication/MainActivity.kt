@@ -11,6 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.makeupapplication.common.Destinations
+import com.example.makeupapplication.presentation.screens.intro.IntroScreen
+import com.example.makeupapplication.presentation.screens.splash.SplashScreen
 import com.example.makeupapplication.ui.theme.MakeupApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,10 +28,30 @@ class MainActivity : ComponentActivity() {
         setContent {
             MakeupApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    NavGraph(modifier = Modifier.padding(innerPadding))
 
                 }
             }
         }
     }
+}
+
+@Composable
+fun NavGraph(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Destinations.SPLASH,
+
+    ) {
+        composable(Destinations.SPLASH) {
+            SplashScreen(navController = navController)
+        }
+        composable(Destinations.INTRO) {
+            IntroScreen()
+        }
+
+    }
+
 }
 

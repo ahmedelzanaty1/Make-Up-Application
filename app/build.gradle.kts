@@ -35,7 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -50,7 +50,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
-    implementation(libs.firebase.bom)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(platform(libs.firebase.bom))
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.firebase.analytics)
