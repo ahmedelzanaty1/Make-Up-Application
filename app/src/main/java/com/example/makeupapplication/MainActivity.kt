@@ -15,7 +15,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.makeupapplication.common.Destinations
+import com.example.makeupapplication.presentation.screens.home.HomeScreen
 import com.example.makeupapplication.presentation.screens.intro.IntroScreen
+import com.example.makeupapplication.presentation.screens.login.LoginScreen
+import com.example.makeupapplication.presentation.screens.signup.SignupScreen
 import com.example.makeupapplication.presentation.screens.splash.SplashScreen
 import com.example.makeupapplication.ui.theme.MakeupApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +51,23 @@ fun NavGraph(modifier: Modifier = Modifier) {
             SplashScreen(navController = navController)
         }
         composable(Destinations.INTRO) {
-            IntroScreen()
+            IntroScreen(navController = navController)
+        }
+        composable(Destinations.LOGIN) {
+            LoginScreen(
+                onLoginSuccess = {
+                    navController.navigate(Destinations.HOME)
+                },
+                navController = navController
+            )
+        }
+        composable(Destinations.REGISTER) {
+            SignupScreen(navController = navController , onSignSuccess = {
+                navController.navigate(Destinations.HOME)
+            })
+        }
+        composable(Destinations.HOME) {
+            HomeScreen()
         }
 
     }
