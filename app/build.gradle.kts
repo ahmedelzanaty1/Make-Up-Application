@@ -55,6 +55,10 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.firebase.analytics)
+
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation ("com.github.bumptech.glide:compose:1.0.0-beta01")
     implementation(libs.firebase.auth)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.ui.tooling.preview)
